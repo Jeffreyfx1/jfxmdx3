@@ -18,14 +18,14 @@ async function aiCommand(sock, chatId, message) {
 
         if (!query) {
             return await sock.sendMessage(chatId, { 
-                text: "Please provide a question after .gpt or .gemini"
+                text: "ᴘʟᴇᴀꜱᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ Qᴜᴇꜱᴛɪᴏɴ ᴀꜰᴛᴇʀ .ɢᴘᴛ ᴏʀ .ɢᴇᴍɪɴɪ"
             });
         }
 
         try {
             // Show processing message
             await sock.sendMessage(chatId, {
-                react: { text: '🤖', key: message.key }
+                react: { text: '🏴‍☠', key: message.key }
             });
 
             if (command === '.gpt') {
