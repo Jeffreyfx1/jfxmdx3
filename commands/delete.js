@@ -4,12 +4,12 @@ async function deleteCommand(sock, chatId, message, senderId) {
     const { isSenderAdmin, isBotAdmin } = await isAdmin(sock, chatId, senderId);
 
     if (!isBotAdmin) {
-        await sock.sendMessage(chatId, { text: 'I need to be an admin to delete messages.' });
+        await sock.sendMessage(chatId, { text: 'ʙᴏᴛ ɴᴇᴇᴅꜱ ᴀᴅᴍɪɴ ʀɪɢʜᴛꜱ ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴍᴇꜱꜱᴀɢᴇꜱ.' });
         return;
     }
 
     if (!isSenderAdmin) {
-        await sock.sendMessage(chatId, { text: 'Only admins can use the .delete command.' });
+        await sock.sendMessage(chatId, { text: 'ᴏɴʟʏ ᴀᴅᴍɪɴꜱ ᴄᴀɴ ᴜꜱᴇ ᴛʜᴇ .ᴅᴇʟᴇᴛᴇ ᴄᴏᴍᴍᴀɴᴅ.' });
         return;
     }
 
@@ -17,9 +17,16 @@ async function deleteCommand(sock, chatId, message, senderId) {
     const quotedParticipant = message.message?.extendedTextMessage?.contextInfo?.participant;
 
     if (quotedMessage) {
-        await sock.sendMessage(chatId, { delete: { remoteJid: chatId, fromMe: false, id: quotedMessage, participant: quotedParticipant } });
+        await sock.sendMessage(chatId, {
+            delete: {
+                remoteJid: chatId,
+                fromMe: false,
+                id: quotedMessage,
+                participant: quotedParticipant
+            }
+        });
     } else {
-        await sock.sendMessage(chatId, { text: 'Please reply to a message you want to delete.' });
+        await sock.sendMessage(chatId, { text: 'ᴘʟᴇᴀꜱᴇ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇꜱꜱᴀɢᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴅᴇʟᴇᴛᴇ.' });
     }
 }
 
