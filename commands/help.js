@@ -5,158 +5,158 @@ const path = require('path');
 async function helpCommand(sock, chatId, message) {
     const helpMessage = `
 ╔═══════════════════╗
-   *🤖 ${settings.botName || '𝒥𝐹𝒳 𝑀𝒟-𝒳'}*  
-   Version: *${settings.version || '2.0.5'}*
-   by ${settings.botOwner || 'JEPHTER-TECH'}
+   *🏴‍☠ ${settings.botName || '★彡𝐉𝐅𝐗 𝐌𝐃-𝐗彡★'}*  
+   ᴠᴇʀꜱɪᴏɴ: *${settings.version || '2.0.5'}*
+   ʙʏ: ${settings.botOwner || 'ᴊᴇᴘʜᴛᴇʀ-ᴛᴇᴄʜ'}
    YT : ${global.ytch}
 ╚═══════════════════╝
 
-*Available Commands:*
+*ꜰᴜɴᴄᴛɪᴏɴꜱ ᴍᴇɴᴜ:*
 
-╔═══════════════════╗
-🌐 *General Commands*:
-║ <> .help or .menu
-║ <> .ping
-║ <> .alive
-║ <> .tts <text>
-║ <> .owner
-║ <> .joke
-║ <> .quote
-║ <> .fact
-║ <> .weather <city>
-║ <> .news
-║ <> .attp <text>
-║ <> .lyrics <song_title>
-║ <> .8ball <question>
-║ <> .groupinfo
-║ <> .staff or .admins 
-║ <> .vv
-║ <> .trt <text> <lang>
-║ <> .ss <link>
-║ <> .jid
-╚═══════════════════╝ 
+╭─〔 🌐 ɢᴇɴᴇʀᴀʟ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .help ᴏʀ .menu
+│ ✓ .ping
+│ ✓ .alive
+│ ✓ .tts <ᴛᴇxᴛ>
+│ ✓ .owner
+│ ✓ .joke
+│ ✓ .quote
+│ ✓ .fact
+│ ✓ .weather <ᴄɪᴛʏ>
+│ ✓ .news
+│ ✓ .attp <ᴛᴇxᴛ>
+│ ✓ .lyrics <ꜱᴏɴɢ_ᴛɪᴛʟᴇ>
+│ ✓ .8ball <ǫᴜᴇꜱᴛɪᴏɴ>
+│ ✓ .groupinfo
+│ ✓ .staff ᴏʀ .admins
+│ ✓ .vv
+│ ✓ .trt <ᴛᴇxᴛ> <ʟᴀɴɢ>
+│ ✓ .ss <ʟɪɴᴋ>
+│ ✓ .jid
+╰──────────────────────╯
 
-╔═══════════════════╗
-👮‍♂️ *Admin Commands*:
-║ <> .ban @user
-║ <> .promote @user
-║ <> .demote @user
-║ <> .mute <minutes>
-║ <> .unmute
-║ <> .delete or .del
-║ <> .kick @user
-║ <> .warnings @user
-║ <> .warn @user
-║ <> .antilink
-║ <> .antibadword
-║ <> .clear
-║ <> .tag <message>
-║ <> .tagall
-║ <> .chatbot
-║ <> .resetlink
-║ <> .welcome <on/off>
-║ <> .goodbye <on/off>
-╚═══════════════════╝
 
-╔═══════════════════╗
-🔒 *Owner Commands*:
-║ <> .mode
-║ <> .autostatus
-║ <> .clearsession
-║ <> .antidelete
-║ <> .cleartmp
-║ <> .setpp <reply to image>
-║ <> .autoreact
-╚═══════════════════╝
 
-╔═══════════════════╗
-🎨 *Image/Sticker Commands*:
-║ <> .blur <image>
-║ <> .simage <reply to sticker>
-║ <> .sticker <reply to image>
-║ <> .tgsticker <Link>
-║ <> .meme
-║ <> .take <packname> 
-║ <> .emojimix <emj1>+<emj2>
-╚═══════════════════╝  
+╭─〔 👑 ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .ban @user
+│ ✓ .promote @user
+│ ✓ .demote @user
+│ ✓ .mute <ᴍɪɴᴜᴛᴇꜱ>
+│ ✓ .unmute
+│ ✓ .delete ᴏʀ .del
+│ ✓ .kick @user
+│ ✓ .warnings @user
+│ ✓ .warn @user
+│ ✓ .antilink
+│ ✓ .antibadword
+│ ✓ .clear
+│ ✓ .tag <ᴍᴇꜱꜱᴀɢᴇ>
+│ ✓ .tagall
+│ ✓ .chatbot
+│ ✓ .resetlink
+│ ✓ .welcome <ᴏɴ/ᴏꜰꜰ>
+│ ✓ .goodbye <ᴏɴ/ᴏꜰꜰ>
+╰──────────────────────╯
 
-╔═══════════════════╗
-🎮 *Game Commands*:
-║ <> .tictactoe @user
-║ <> .hangman
-║ <> .guess <letter>
-║ <> .trivia
-║ <> .answer <answer>
-║ <> .truth
-║ <> .dare
-╚═══════════════════╝
 
-╔═══════════════════╗
-🤖 *AI Commands*:
-║ <> .gpt <question>
-║ <> .gemini <question>
-║ <> .imagine <prompt>
-║ <> .flux <prompt>
-╚═══════════════════╝
+╭─〔 🗿 ᴏᴡɴᴇʀ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .mode
+│ ✓ .autostatus
+│ ✓ .clearsession
+│ ✓ .antidelete
+│ ✓ .cleartmp
+│ ✓ .setpp <ʀᴇᴘʟʏ ᴛᴏ ɪᴍᴀɢᴇ>
+│ ✓ .autoreact
+╰──────────────────────╯
 
-╔═══════════════════╗
-🎯 *Fun Commands*:
-║ <> .compliment @user
-║ <> .insult @user
-║ <> .flirt 
-║ <> .shayari
-║ <> .goodnight
-║ <> .roseday
-║ <> .character @user
-║ <> .wasted @user
-║ <> .ship @user
-║ <> .simp @user
-║ <> .stupid @user [text]
-╚═══════════════════╝
 
-╔═══════════════════╗
-🔤 *Textmaker*:
-║ <> .metallic <text>
-║ <> .ice <text>
-║ <> .snow <text>
-║ <> .impressive <text>
-║ <> .matrix <text>
-║ <> .light <text>
-║ <> .neon <text>
-║ <> .devil <text>
-║ <> .purple <text>
-║ <> .thunder <text>
-║ <> .leaves <text>
-║ <> .1917 <text>
-║ <> .arena <text>
-║ <> .hacker <text>
-║ <> .sand <text>
-║ <> .blackpink <text>
-║ <> .glitch <text>
-║ <> .fire <text>
-╚═══════════════════╝
+╭─〔 🖼 ɪᴍᴀɢᴇ/ꜱᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .blur <ɪᴍᴀɢᴇ>
+│ ✓ .simage <ʀᴇᴘʟʏ ᴛᴏ ꜱᴛɪᴄᴋᴇʀ>
+│ ✓ .sticker <ʀᴇᴘʟʏ ᴛᴏ ɪᴍᴀɢᴇ>
+│ ✓ .tgsticker <ʟɪɴᴋ>
+│ ✓ .meme
+│ ✓ .take <ᴘᴀᴄᴋɴᴀᴍᴇ>
+│ ✓ .emojimix <ᴇᴍᴊ1>+<ᴇᴍᴊ2>
+╰────────────────────────────╯
+  
 
-╔═══════════════════╗
-📥 *Downloader*:
-║ <> .play <song_name>
-║ <> .song <song_name>
-║ <> .instagram <link>
-║ <> .facebook <link>
-║ <> .tiktok <link>
-║ <> .video <song name>
-║ <> .ytmp4 <Link>
-╚═══════════════════╝
+╭─〔 🎮 ɢᴀᴍᴇ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .tictactoe @ᴜꜱᴇʀ
+│ ✓ .hangman
+│ ✓ .guess <ʟᴇᴛᴛᴇʀ>
+│ ✓ .trivia
+│ ✓ .answer <ᴀɴꜱᴡᴇʀ>
+│ ✓ .truth
+│ ✓ .dare
+╰────────────────────╯
 
-╔═══════════════════╗
-💻 *Github Commands:*
-║ <> .git
-║ <> .github
-║ <> .sc
-║ <> .script
-║ <> .repo
-╚═══════════════════╝
 
-Join our channel for updates:`;
+╭─〔 🤖 ᴀɪ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .gpt <ǫᴜᴇꜱᴛɪᴏɴ>
+│ ✓ .gemini <ǫᴜᴇꜱᴛɪᴏɴ>
+│ ✓ .imagine <ᴘʀᴏᴍᴘᴛ>
+│ ✓ .flux <ᴘʀᴏᴍᴘᴛ>
+╰────────────────────╯
+
+
+╭─〔 🎯 ꜰᴜɴ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .compliment @ᴜꜱᴇʀ
+│ ✓ .insult @ᴜꜱᴇʀ
+│ ✓ .flirt
+│ ✓ .shayari
+│ ✓ .goodnight
+│ ✓ .roseday
+│ ✓ .character @ᴜꜱᴇʀ
+│ ✓ .wasted @ᴜꜱᴇʀ
+│ ✓ .ship @ᴜꜱᴇʀ
+│ ✓ .simp @ᴜꜱᴇʀ
+│ ✓ .stupid @ᴜꜱᴇʀ [ᴛᴇxᴛ]
+╰────────────────────╯
+
+
+╭─〔 🔤 ᴛᴇxᴛᴍᴀᴋᴇʀ 〕─╮
+│ ✓ .metallic <ᴛᴇxᴛ>
+│ ✓ .ice <ᴛᴇxᴛ>
+│ ✓ .snow <ᴛᴇxᴛ>
+│ ✓ .impressive <ᴛᴇxᴛ>
+│ ✓ .matrix <ᴛᴇxᴛ>
+│ ✓ .light <ᴛᴇxᴛ>
+│ ✓ .neon <ᴛᴇxᴛ>
+│ ✓ .devil <ᴛᴇxᴛ>
+│ ✓ .purple <ᴛᴇxᴛ>
+│ ✓ .thunder <ᴛᴇxᴛ>
+│ ✓ .leaves <ᴛᴇxᴛ>
+│ ✓ .1917 <ᴛᴇxᴛ>
+│ ✓ .arena <ᴛᴇxᴛ>
+│ ✓ .hacker <ᴛᴇxᴛ>
+│ ✓ .sand <ᴛᴇxᴛ>
+│ ✓ .blackpink <ᴛᴇxᴛ>
+│ ✓ .glitch <ᴛᴇxᴛ>
+│ ✓ .fire <ᴛᴇxᴛ>
+╰────────────────────╯
+
+
+╭─〔 📥 ᴅᴏᴡɴʟᴏᴀᴅᴇʀ 〕─╮
+│ ✓ .play <ꜱᴏɴɢ_ɴᴀᴍᴇ>
+│ ✓ .song <ꜱᴏɴɢ_ɴᴀᴍᴇ>
+│ ✓ .instagram <ʟɪɴᴋ>
+│ ✓ .facebook <ʟɪɴᴋ>
+│ ✓ .tiktok <ʟɪɴᴋ>
+│ ✓ .video <ꜱᴏɴɢ_ɴᴀᴍᴇ>
+│ ✓ .ytmp4 <ʟɪɴᴋ>
+╰────────────────────╯
+
+╭─〔 💻 ɢɪᴛʜᴜʙ ᴄᴏᴍᴍᴀɴᴅꜱ 〕─╮
+│ ✓ .git
+│ ✓ .github
+│ ✓ .sc
+│ ✓ .script
+│ ✓ .repo
+╰────────────────────────╯
+
+
+Join our channel for updates:'https://whatsapp.com/channel/0029VbAxkJl0lwgqAOojKI3R`;
 
     try {
         const imagePath = path.join(__dirname, '../assets/bot_image.jpg');
@@ -172,7 +172,7 @@ Join our channel for updates:`;
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: '𝒥𝐹𝒳 𝑀𝒟-𝒳',
+                        newsletterName: '𝐉𝐅𝐗 𝐌𝐃-𝐗',
                         serverMessageId: -1
                     }
                 }
@@ -186,7 +186,7 @@ Join our channel for updates:`;
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: '𝒥𝐹𝒳 𝑀𝒟-𝒳 by Jephter Tech',
+                        newsletterName: '𝐉𝐅𝐗 𝐌𝐃-𝐗 by ᴊᴇᴘʜᴛᴇʀ ᴛᴇᴄʜ',
                         serverMessageId: -1
                     } 
                 }
