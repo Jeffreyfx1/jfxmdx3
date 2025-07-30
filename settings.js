@@ -1,8 +1,8 @@
 const settings = {
-  packname: 'JFX MD-X',
+  packname: '𝒥𝐹𝒳 𝑀𝒟-𝒳',
   author: 'JEPHTER TECH',
   botName: "JFX MD-X",
-  botOwner: 'JEPHTER TECH', // Your name
+  botOwner: 'JEPHTER-TECH', // Your name
   ownerNumber: '2349046157539', // No + symbol
   giphyApiKey: 'qnl7ssQChTdPjsKta2Ax2LMaGXz303tq',
   commandMode: "public",
