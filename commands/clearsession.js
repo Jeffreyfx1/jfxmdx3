@@ -8,7 +8,7 @@ const channelInfo = {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
             newsletterJid: '120363161513685998@newsletter',
-            newsletterName: 'KnightBot MD',
+            newsletterName: '𝐉𝐅𝐗 𝐌𝐃-𝐗',
             serverMessageId: -1
         }
     }
@@ -19,7 +19,7 @@ async function clearSessionCommand(sock, chatId, msg) {
         // Check if sender is owner
         if (!msg.key.fromMe) {
             await sock.sendMessage(chatId, { 
-                text: '❌ This command can only be used by the owner!',
+                text: '❌ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜꜱᴇᴅ ʙʏ ᴛʜᴇ ᴏᴡɴᴇʀ!',
                 ...channelInfo
             });
             return;
@@ -30,7 +30,7 @@ async function clearSessionCommand(sock, chatId, msg) {
 
         if (!fs.existsSync(sessionDir)) {
             await sock.sendMessage(chatId, { 
-                text: '❌ Session directory not found!',
+                text: '❌ ꜱᴇꜱꜱɪᴏɴ ᴅɪʀᴇᴄᴛᴏʀʏ ɴᴏᴛ ꜰᴏᴜɴᴅ!',
                 ...channelInfo
             });
             return;
@@ -42,7 +42,7 @@ async function clearSessionCommand(sock, chatId, msg) {
 
         // Send initial status
         await sock.sendMessage(chatId, { 
-            text: `🔍 Optimizing session files for better performance...`,
+            text: `🔍 ᴏᴘᴛɪᴍɪᴢɪɴɢ ꜱᴇꜱꜱɪᴏɴ ꜰɪʟᴇꜱ ꜰᴏʀ ʙᴇᴛᴛᴇʀ ᴘᴇʀꜰᴏʀᴍᴀɴᴄᴇ...`,
             ...channelInfo
         });
 
@@ -59,27 +59,24 @@ async function clearSessionCommand(sock, chatId, msg) {
 
         // Delete files
         for (const file of files) {
-            if (file === 'creds.json') {
-                // Skip creds.json file
-                continue;
-            }
+            if (file === 'creds.json') continue;
             try {
                 const filePath = path.join(sessionDir, file);
                 fs.unlinkSync(filePath);
                 filesCleared++;
             } catch (error) {
                 errors++;
-                errorDetails.push(`Failed to delete ${file}: ${error.message}`);
+                errorDetails.push(`ꜰᴀɪʟᴇᴅ ᴛᴏ ᴅᴇʟᴇᴛᴇ ${file}: ${error.message}`);
             }
         }
 
         // Send completion message
-        const message = `✅ Session files cleared successfully!\n\n` +
-                       `📊 Statistics:\n` +
-                       `• Total files cleared: ${filesCleared}\n` +
-                       `• App state sync files: ${appStateSyncCount}\n` +
-                       `• Pre-key files: ${preKeyCount}\n` +
-                       (errors > 0 ? `\n⚠️ Errors encountered: ${errors}\n${errorDetails.join('\n')}` : '');
+        const message = `✅ ꜱᴇꜱꜱɪᴏɴ ꜰɪʟᴇꜱ ᴄʟᴇᴀʀᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ!\n\n` +
+                       `📊 ꜱᴛᴀᴛɪꜱᴛɪᴄꜱ:\n` +
+                       `• ᴛᴏᴛᴀʟ ꜰɪʟᴇꜱ ᴄʟᴇᴀʀᴇᴅ: ${filesCleared}\n` +
+                       `• ᴀᴘᴘ ꜱᴛᴀᴛᴇ ꜱʏɴᴄ ꜰɪʟᴇꜱ: ${appStateSyncCount}\n` +
+                       `• ᴘʀᴇ-ᴋᴇʏ ꜰɪʟᴇꜱ: ${preKeyCount}\n` +
+                       (errors > 0 ? `\n⚠️ ᴇʀʀᴏʀꜱ ᴇɴᴄᴏᴜɴᴛᴇʀᴇᴅ: ${errors}\n${errorDetails.join('\n')}` : '');
 
         await sock.sendMessage(chatId, { 
             text: message,
@@ -89,10 +86,10 @@ async function clearSessionCommand(sock, chatId, msg) {
     } catch (error) {
         console.error('Error in clearsession command:', error);
         await sock.sendMessage(chatId, { 
-            text: '❌ Failed to clear session files!',
+            text: '❌ ꜰᴀɪʟᴇᴅ ᴛᴏ ᴄʟᴇᴀʀ ꜱᴇꜱꜱɪᴏɴ ꜰɪʟᴇꜱ!',
             ...channelInfo
         });
     }
 }
 
-module.exports = clearSessionCommand; 
+module.exports = clearSessionCommand;
