@@ -7,7 +7,7 @@ const channelInfo = {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
             newsletterJid: '120363161513685998@newsletter',
-            newsletterName: '𝒥𝐹𝒳 𝑀𝒟-𝒳',
+            newsletterName: '𝐉𝐅𝐗 𝐌𝐃-𝐗',
             serverMessageId: -1
         }
     }
@@ -26,7 +26,7 @@ async function autoStatusCommand(sock, chatId, msg, args) {
         // Check if sender is owner
         if (!msg.key.fromMe) {
             await sock.sendMessage(chatId, { 
-                text: '❌ This command can only be used by the owner!',
+                text: '❌ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜꜱᴇᴅ ʙʏ ᴛʜᴇ ᴏᴡɴᴇʀ!',
                 ...channelInfo
             });
             return;
@@ -37,9 +37,9 @@ async function autoStatusCommand(sock, chatId, msg, args) {
 
         // If no arguments, show current status
         if (!args || args.length === 0) {
-            const status = config.enabled ? 'enabled' : 'disabled';
+            const status = config.enabled ? 'ᴇɴᴀʙʟᴇᴅ' : 'ᴅɪꜱᴀʙʟᴇᴅ';
             await sock.sendMessage(chatId, { 
-                text: `🔄 *Auto Status View*\n\nCurrent status: ${status}\n\nUse:\n.autostatus on - Enable auto status view\n.autostatus off - Disable auto status view`,
+                text: `🔄 *ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ ᴠɪᴇᴡ*\n\nᴄᴜʀʀᴇɴᴛ ꜱᴛᴀᴛᴜꜱ: ${status}\n\nᴜꜱᴇ:\n.ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ ᴏɴ - ᴇɴᴀʙʟᴇ ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ ᴠɪᴇᴡ\n.ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ ᴏꜰꜰ - ᴅɪꜱᴀʙʟᴇ ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ ᴠɪᴇᴡ`,
                 ...channelInfo
             });
             return;
@@ -51,19 +51,19 @@ async function autoStatusCommand(sock, chatId, msg, args) {
             config.enabled = true;
             fs.writeFileSync(configPath, JSON.stringify(config));
             await sock.sendMessage(chatId, { 
-                text: '✅ Auto status view has been enabled!\nBot will now automatically view all contact statuses.',
+                text: '✅ ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ ᴠɪᴇᴡ ʜᴀꜱ ʙᴇᴇɴ ᴇɴᴀʙʟᴇᴅ!\nʙᴏᴛ ᴡɪʟʟ ɴᴏᴡ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴠɪᴇᴡ ᴀʟʟ ᴄᴏɴᴛᴀᴄᴛ ꜱᴛᴀᴛᴜꜱᴇꜱ.',
                 ...channelInfo
             });
         } else if (command === 'off') {
             config.enabled = false;
             fs.writeFileSync(configPath, JSON.stringify(config));
             await sock.sendMessage(chatId, { 
-                text: '❌ Auto status view has been disabled!\nBot will no longer automatically view statuses.',
+                text: '❌ ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ ᴠɪᴇᴡ ʜᴀꜱ ʙᴇᴇɴ ᴅɪꜱᴀʙʟᴇᴅ!\nʙᴏᴛ ᴡɪʟʟ ɴᴏ ʟᴏɴɢᴇʀ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴠɪᴇᴡ ꜱᴛᴀᴛᴜꜱᴇꜱ.',
                 ...channelInfo
             });
         } else {
             await sock.sendMessage(chatId, { 
-                text: '❌ Invalid command! Use:\n.autostatus on - Enable auto status view\n.autostatus off - Disable auto status view',
+                text: '❌ ɪɴᴠᴀʟɪᴅ ᴄᴏᴍᴍᴀɴᴅ! ᴜꜱᴇ:\n.ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ ᴏɴ - ᴇɴᴀʙʟᴇ ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ ᴠɪᴇᴡ\n.ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ ᴏꜰꜰ - ᴅɪꜱᴀʙʟᴇ ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ ᴠɪᴇᴡ',
                 ...channelInfo
             });
         }
@@ -71,7 +71,7 @@ async function autoStatusCommand(sock, chatId, msg, args) {
     } catch (error) {
         console.error('Error in autostatus command:', error);
         await sock.sendMessage(chatId, { 
-            text: '❌ Error occurred while managing auto status!\n' + error.message,
+            text: '❌ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ ᴡʜɪʟᴇ ᴍᴀɴᴀɢɪɴɢ ᴀᴜᴛᴏ ꜱᴛᴀᴛᴜꜱ!\n' + error.message,
             ...channelInfo
         });
     }
@@ -163,4 +163,4 @@ async function handleStatusUpdate(sock, status) {
 module.exports = {
     autoStatusCommand,
     handleStatusUpdate
-}; 
+};
