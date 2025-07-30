@@ -186,7 +186,7 @@ Join our channel for updates:`;
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363161513685998@newsletter',
-                        newsletterName: 'KnightBot MD by Mr Unique Hacker',
+                        newsletterName: '𝒥𝐹𝒳 𝑀𝒟-𝒳 by Jephter Tech',
                         serverMessageId: -1
                     } 
                 }
