@@ -8,36 +8,30 @@ const messageStore = new Map();
 const CONFIG_PATH = path.join(__dirname, '../data/antidelete.json');
 const TEMP_MEDIA_DIR = path.join(__dirname, '../tmp');
 
-// Ensure tmp dir exists
 if (!fs.existsSync(TEMP_MEDIA_DIR)) {
     fs.mkdirSync(TEMP_MEDIA_DIR, { recursive: true });
 }
 
-// Function to get folder size in MB
 const getFolderSizeInMB = (folderPath) => {
     try {
         const files = fs.readdirSync(folderPath);
         let totalSize = 0;
-
         for (const file of files) {
             const filePath = path.join(folderPath, file);
             if (fs.statSync(filePath).isFile()) {
                 totalSize += fs.statSync(filePath).size;
             }
         }
-
-        return totalSize / (1024 * 1024); // Convert bytes to MB
+        return totalSize / (1024 * 1024);
     } catch (err) {
         console.error('Error getting folder size:', err);
         return 0;
     }
 };
 
-// Function to clean temp folder if size exceeds 10MB
 const cleanTempFolderIfLarge = () => {
     try {
         const sizeMB = getFolderSizeInMB(TEMP_MEDIA_DIR);
-        
         if (sizeMB > 100) {
             const files = fs.readdirSync(TEMP_MEDIA_DIR);
             for (const file of files) {
@@ -50,10 +44,8 @@ const cleanTempFolderIfLarge = () => {
     }
 };
 
-// Start periodic cleanup check every 1 minute
 setInterval(cleanTempFolderIfLarge, 60 * 1000);
 
-// Load config
 function loadAntideleteConfig() {
     try {
         if (!fs.existsSync(CONFIG_PATH)) return { enabled: false };
@@ -63,7 +55,6 @@ function loadAntideleteConfig() {
     }
 }
 
-// Save config
 function saveAntideleteConfig(config) {
     try {
         fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
@@ -72,17 +63,16 @@ function saveAntideleteConfig(config) {
     }
 }
 
-// Command Handler
 async function handleAntideleteCommand(sock, chatId, message, match) {
     if (!message.key.fromMe) {
-        return sock.sendMessage(chatId, { text: '*Only the bot owner can use this command.*' });
+        return sock.sendMessage(chatId, { text: 'ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ.' });
     }
 
     const config = loadAntideleteConfig();
 
     if (!match) {
         return sock.sendMessage(chatId, {
-            text: `*ANTIDELETE SETUP*\n\nCurrent Status: ${config.enabled ? '✅ Enabled' : '❌ Disabled'}\n\n*.antidelete on* - Enable\n*.antidelete off* - Disable`
+            text: `ᴀɴᴛɪᴅᴇʟᴇᴛᴇ ꜱᴇᴛᴜᴘ\n\nᴄᴜʀʀᴇɴᴛ ꜱᴛᴀᴛᴜꜱ: ${config.enabled ? '✅ ᴇɴᴀʙʟᴇᴅ' : '❌ ᴅɪꜱᴀʙʟᴇᴅ'}\n\n*.antidelete on* - ᴇɴᴀʙʟᴇ\n*.antidelete off* - ᴅɪꜱᴀʙʟᴇ`
         });
     }
 
@@ -91,29 +81,27 @@ async function handleAntideleteCommand(sock, chatId, message, match) {
     } else if (match === 'off') {
         config.enabled = false;
     } else {
-        return sock.sendMessage(chatId, { text: '*Invalid command. Use .antidelete to see usage.*' });
+        return sock.sendMessage(chatId, { text: 'ɪɴᴠᴀʟɪᴅ ᴄᴏᴍᴍᴀɴᴅ. ᴜꜱᴇ *.antidelete* ᴛᴏ ꜱᴇᴇ ᴜꜱᴀɢᴇ.' });
     }
 
     saveAntideleteConfig(config);
-    return sock.sendMessage(chatId, { text: `*Antidelete ${match === 'on' ? 'enabled' : 'disabled'}*` });
+    return sock.sendMessage(chatId, {
+        text: `ᴀɴᴛɪᴅᴇʟᴇᴛᴇ ${match === 'on' ? 'ᴇɴᴀʙʟᴇᴅ' : 'ᴅɪꜱᴀʙʟᴇᴅ'}`
+    });
 }
 
-// Store incoming messages
 async function storeMessage(message) {
     try {
         const config = loadAntideleteConfig();
-        if (!config.enabled) return; // Don't store if antidelete is disabled
-
+        if (!config.enabled) return;
         if (!message.key?.id) return;
 
         const messageId = message.key.id;
         let content = '';
         let mediaType = '';
         let mediaPath = '';
-
         const sender = message.key.participant || message.key.remoteJid;
 
-        // Detect content
         if (message.message?.conversation) {
             content = message.message.conversation;
         } else if (message.message?.extendedTextMessage?.text) {
@@ -151,7 +139,6 @@ async function storeMessage(message) {
     }
 }
 
-// Handle message deletion
 async function handleMessageRevocation(sock, revocationMessage) {
     try {
         const config = loadAntideleteConfig();
@@ -176,27 +163,23 @@ async function handleMessageRevocation(sock, revocationMessage) {
             day: '2-digit', month: '2-digit', year: 'numeric'
         });
 
-        let text = `*🔰 ANTIDELETE REPORT 🔰*\n\n` +
-            `*🗑️ Deleted By:* @${deletedBy.split('@')[0]}\n` +
-            `*👤 Sender:* @${senderName}\n` +
-            `*📱 Number:* ${sender}\n` +
-            `*🕒 Time:* ${time}\n`;
+        let text = `🔰 ᴀɴᴛɪᴅᴇʟᴇᴛᴇ ʀᴇᴘᴏʀᴛ 🔰\n\n` +
+            `🗑️ ᴅᴇʟᴇᴛᴇᴅ ʙʏ: @${deletedBy.split('@')[0]}\n` +
+            `👤 sᴇɴᴅᴇʀ: @${senderName}\n` +
+            `📱 ɴᴜᴍʙᴇʀ: ${sender}\n` +
+            `🕒 ᴛɪᴍᴇ: ${time}\n`;
 
-        if (groupName) text += `*👥 Group:* ${groupName}\n`;
-
-        if (original.content) {
-            text += `\n*💬 Deleted Message:*\n${original.content}`;
-        }
+        if (groupName) text += `👥 ɢʀᴏᴜᴘ: ${groupName}\n`;
+        if (original.content) text += `\n💬 ᴅᴇʟᴇᴛᴇᴅ ᴍᴇssᴀɢᴇ:\n${original.content}`;
 
         await sock.sendMessage(ownerNumber, {
             text,
             mentions: [deletedBy, sender]
         });
 
-        // Media sending
         if (original.mediaType && fs.existsSync(original.mediaPath)) {
             const mediaOptions = {
-                caption: `*Deleted ${original.mediaType}*\nFrom: @${senderName}`,
+                caption: `ᴅᴇʟᴇᴛᴇᴅ ${original.mediaType}\nꜰʀᴏᴍ: @${senderName}`,
                 mentions: [sender]
             };
 
@@ -223,11 +206,10 @@ async function handleMessageRevocation(sock, revocationMessage) {
                 }
             } catch (err) {
                 await sock.sendMessage(ownerNumber, {
-                    text: `⚠️ Error sending media: ${err.message}`
+                    text: `⚠️ ᴇʀʀᴏʀ sᴇɴᴅɪɴɢ ᴍᴇᴅɪᴀ: ${err.message}`
                 });
             }
 
-            // Cleanup
             try {
                 fs.unlinkSync(original.mediaPath);
             } catch (err) {
