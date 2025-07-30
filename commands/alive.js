@@ -2,15 +2,15 @@ const settings = require("../settings");
 async function aliveCommand(sock, chatId, message) {
     try {
         const message1 = `*🏴‍☠ 𝐉𝐅𝐗 𝐌𝐃-𝐗 is Active!*\n\n` +
-                       `*Version:* ${settings.version}\n` +
-                       `*Status:* Online\n` +
-                       `*Mode:* Public\n\n` +
-                       `*🌟 Features:*\n` +
-                       `• Group Management\n` +
-                       `• Antilink Protection\n` +
-                       `• Fun Commands\n` +
-                       `• And more!\n\n` +
-                       `Type *.menu* for full command list`;
+                       `*ᴠᴇʀꜱɪᴏɴ:* ${settings.version}\n` +
+                       `*ꜱᴛᴀᴛᴜꜱ:* ᴏɴʟɪɴᴇ\n` +
+                       `*ᴍᴏᴅᴇ:* ᴘᴜʙʟɪᴄ\n\n` +
+                       `*🌟 ꜰᴇᴀᴛᴜʀᴇꜱ:*\n` +
+                      `• ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ\n` +
+                    `• ᴀɴᴛɪʟɪɴᴋ ᴘʀᴏᴛᴇᴄᴛɪᴏɴ\n` +
+                     `• ꜰᴜɴ ᴄᴏᴍᴍᴀɴᴅꜱ\n` +
+                    `• ᴀɴᴅ ᴍᴏʀᴇ!\n\n` +
+            `ᴛʏᴘᴇ *.menu* ꜰᴏʀ ꜰᴜʟʟ ᴄᴏᴍᴍᴀɴᴅ ʟɪꜱᴛ`;
 
         await sock.sendMessage(chatId, {
             text: message1,
