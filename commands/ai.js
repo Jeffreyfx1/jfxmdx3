@@ -7,7 +7,7 @@ async function aiCommand(sock, chatId, message) {
         
         if (!text) {
             return await sock.sendMessage(chatId, { 
-                text: "Please provide a question after .gpt or .gemini\n\nExample: .gpt write a basic html code"
+                text: "ᴘʟᴇᴀꜱᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ Qᴜᴇꜱᴛɪᴏɴ ᴀꜰᴛᴇʀ .ɢᴘᴛ ᴏʀ .ɢᴇᴍɪɴɪ\ɴ\ɴᴇxᴀᴍᴘʟᴇ: .ɢᴘᴛ ᴡʀɪᴛᴇ ᴀ ʙᴀꜱɪᴄ ʜᴛᴍʟ ᴄᴏᴅᴇ"
             });
         }
 
