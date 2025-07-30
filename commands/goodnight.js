@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 async function goodnightCommand(sock, chatId, message) {
     try {
-        const shizokeys = 'knightbot';
+        const shizokeys = 'jfx-md-x';
         const res = await fetch(`https://api.shizo.top/api/quote/gnsd?apikey=${shizokeys}`);
         
         if (!res.ok) {
@@ -16,8 +16,8 @@ async function goodnightCommand(sock, chatId, message) {
         await sock.sendMessage(chatId, { text: goodnightMessage }, { quoted: message });
     } catch (error) {
         console.error('Error in goodnight command:', error);
-        await sock.sendMessage(chatId, { text: '❌ Failed to get goodnight message. Please try again later!' }, { quoted: message });
+        await sock.sendMessage(chatId, { text: 'ꜰᴀɪʟᴇᴅ ᴛᴏ ɢᴇᴛ ɢᴏᴏᴅɴɪɢʜᴛ ᴍᴇꜱꜱᴀɢᴇ. ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ ʟᴀᴛᴇʀ' }, { quoted: message });
     }
 }
 
-module.exports = { goodnightCommand }; 
+module.exports = { goodnightCommand };
